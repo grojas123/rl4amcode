@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rl4am"
+version = "0.1.0"
+description = "Reinforcement learning for asset management research components."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Dr. Yves J. Hilpisch" }
+]
+license = { text = "Proprietary" }
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "PyYAML>=6.0",
+  "torch>=2.2",
+  "matplotlib>=3.7",
+  "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=8.0",
+]
+
+[project.scripts]
+rl4am = "rl4am.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

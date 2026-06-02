@@ -1,0 +1,31 @@
+seeds: [42, 4200]
+task_order: random
+task_order_seed: 42
+
+fixed_overrides:
+  data.symbol: EURUSD
+  environment.riskless_rate: 0.0
+  sampling.mode: random
+  sampling.train_slices: 100
+  sampling.test_slices: 10
+  sampling.trading_days_per_slice: 504
+  sampling.overlap: true
+  sampling.normalization: training_pool
+  experiments.dqn.enabled: true
+
+grid:
+  environment.window: [10, 20]
+  environment.state_features.enabled: [false, true]
+  environment.reward.mode: [sign, log_return]
+  experiments.dqn.action_grid.bins: [21]
+  experiments.dqn.model.hidden_units: [256]
+  experiments.dqn.optimisation.learning_rate: [0.0001, 0.0005]
+  experiments.dqn.optimisation.gamma: [0.95, 0.99]
+  experiments.dqn.optimisation.batch_size: [32, 64]
+  experiments.dqn.optimisation.target_update_interval: [100, 250]
+  experiments.dqn.optimisation.double_dqn: [true]
+
+objective:
+  metric: slice_mean_term_eq
+  stability_metric: slice_std_ann_sharpe
+  stability_penalty: 0.05

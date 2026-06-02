@@ -1,0 +1,32 @@
+seeds: [42, 4200]
+task_order: random
+task_order_seed: 42
+
+fixed_overrides:
+  data.symbol: EURUSD
+  environment.riskless_rate: 0.0
+  sampling.mode: random
+  sampling.train_slices: 500
+  sampling.test_slices: 50
+  sampling.trading_days_per_slice: 504
+  sampling.overlap: true
+  sampling.normalization: training_pool
+  experiments.a2c.enabled: true
+
+grid:
+  environment.window: [10, 20]
+  environment.state_features.enabled: [false, true]
+  experiments.a2c.model.hidden_units: [256]
+  experiments.a2c.optimisation.learning_rate:
+    [0.001, 0.0007]
+  experiments.a2c.optimisation.gamma: [0.95]
+  experiments.a2c.optimisation.gae_lambda: [0.9, 0.95]
+  experiments.a2c.optimisation.entropy_coefficient: [0.0, 0.001]
+  experiments.a2c.optimisation.runs_per_train_slice: [1, 5]
+  environment.smoothness_penalty: [0.0, 0.05]
+  environment.reward.mode: [log_return]
+
+objective:
+  metric: slice_mean_term_eq
+  stability_metric: slice_std_ann_sharpe
+  stability_penalty: 0.05

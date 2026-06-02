@@ -1,0 +1,123 @@
+# OS junk
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Editor / IDE
+.idea/
+.vscode/
+*.code-workspace
+*.swp
+*.swo
+*.swn
+*.swm
+*~
+.#*
+.~*
+*.bak
+*.orig
+*.rej
+
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.*
+
+# Python packaging / build artefacts
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+wheels/
+.python-version
+.pdm.toml
+.pdm-python
+
+# Jupyter
+.ipynb_checkpoints/
+*.nbconvert/
+.executed/
+
+# Caches
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.pytype/
+
+# Coverage
+.coverage*
+coverage.xml
+htmlcov/
+
+# Run outputs / training artifacts
+runs/
+results/
+training_history.json
+model.pt
+*.pt
+
+# Data files
+data/
+*.csv
+!tests/fixtures/*.csv
+*.npy
+*.parquet
+
+# Stats / logs
+stats/
+*.log
+
+# Binary images
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+*.ico
+
+# PDFs
+*.pdf
+
+# LaTeX auxiliary
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.listing
+_minted*/
+latex.out/
+tex.out/
+
+# Local / archived
+_old/
+ref/
+_ignore/

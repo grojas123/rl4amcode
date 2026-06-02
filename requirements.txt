@@ -1,0 +1,21 @@
+# Core scientific stack
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+PyYAML>=6.0
+tqdm>=4.66
+
+# Deep learning
+torch>=2.2
+
+# Notebook execution
+ipython>=8.0
+jupyterlab>=4.0
+nbformat>=5.9
+nbclient>=0.10
+
+# Testing
+pytest>=8.0
+
+# LaTeX minted support
+Pygments>=2.16
