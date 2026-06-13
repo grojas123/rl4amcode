@@ -44,6 +44,79 @@ flowchart TD
     SWEEP -. best config .-> LOAD
 ```
 
+The same pipeline as a plain-text (ASCII) diagram — renders in any viewer, no Mermaid support required:
+
+```text
++--------------------------------------------------------+
+|  YAML config   (configs/*.yml)
++--------------------------------------------------------+
+                             |
+                             v
++--------------------------------------------------------+
+|  load_config() / build_config()
+|    -- strict validation of every option
++--------------------------------------------------------+
+                             |
+                             v
++--------------------------------------------------------+
+|  load_market_data()
+|    -- local file  -->  remote fallback
+|    -- prices  -->  returns
++--------------------------------------------------------+
+                             |
+                             v
++--------------------------------------------------------+
+|  sample_market_slices()          [ sampling.mode ]
+|    -- random ......... fixed-length windows (seeded RNG)
+|    -- walk_forward ... rolling train --> test windows
++--------------------------------------------------------+
+                             |
+                             v
++--------------------------------------------------------+
+|  SliceSet  =  train slices  +  test slices
++--------------------------------------------------------+
+                             |
+                             v
++--------------------------------------------------------+
+|  SingleAssetAllocationEnv
+|    -- obs  = returns window + features + current weight
+|    -- step = clip --> costs --> reward --> drift weight
++--------------------------------------------------------+
+                             |
+                             v
++--------------------------------------------------------+
+|  agent training                  [ which agent? ]
+|    -- train-a2c ... A2C Beta policy  (on-policy, GAE)
+|    -- train-dqn ... DQN / Double-DQN (off-policy, replay)
+|
+|  baselines run in parallel:  grid_best / kelly /
+|  mean-var / passive  -- calibrate on train, replay on test
++--------------------------------------------------------+
+                             |
+                             v
++--------------------------------------------------------+
+|  evaluate_policy()   -- deterministic, per test slice
++--------------------------------------------------------+
+                             |
+                             v
++--------------------------------------------------------+
+|  results/ contract
+|    -- allocation / returns / equity / turnover  .csv
+|    -- metrics.json + manifest.json   (schema_version 1)
++--------------------------------------------------------+
+                             |
+                             v
++--------------------------------------------------------+
+|  reporting
+|    -- compare-results / report-compare
+|    -- comparison tables (CSV + LaTeX) + equity figures
++--------------------------------------------------------+
+
+   sweeps:  sweep-a2c / sweep-dqn
+            grid x seeds  -->  best (objective - stability)
+            -->  recommendation  -->  export YAML  -->  config
+```
+
 ## Stages
 
 Each stage is one module under `src/rl4am/`:
