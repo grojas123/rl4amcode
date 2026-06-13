@@ -20,6 +20,7 @@ A good, broad reference on reinforcement learning for dynamic decision making in
 - `configs/` — YAML configuration files and sweep grids for A2C and DQN experiments.
 - `notebooks/` — Jupyter notebooks for the A2C and DQN workbenches.
 - `tests/` — pytest suite covering environment, baselines, agents, CLI, and reporting.
+- `docs/` — additional documentation, including the [architecture overview](docs/ARCHITECTURE.md) (code flow, agents, CLI, and config options).
 
 ## Quick Start
 
